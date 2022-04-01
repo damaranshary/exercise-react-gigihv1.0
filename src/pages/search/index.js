@@ -1,40 +1,41 @@
-import React, { Component } from "react";
+import { useState } from "react";
 import axios from 'axios';
+import SearchBar from "../../components/SearchBar"
 import GifComponent from "../../components/Gif";
 
-class Search extends Component {
-    state = { data: [], query: "" };
-    apiKey = process.env.REACT_APP_GIPHY_KEY;
-
-    handleOnChange = (e) => {
-        //dapetin nilai input value
-        this.setState({
-            query: e.target.value
-        })
+const Search = () => {
+    const [data, setData] = useState();
+    const [query, setQuery] = useState();
+    
+    const handleFormChange = e => {
+        setQuery(e.target.value);
     }
 
-    getGifs = async () => {
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        console.log(data);
+        getGifs();
+    }
+
+    const getGifs = async () => {
+        const apiKey = process.env.REACT_APP_GIPHY_KEY; 
         const gifs = await
             axios
                 .get(
-                    `http://api.giphy.com/v1/gifs/search?q=${this.state.query}&api_key=${this.apiKey}&limit=12`
+                    `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=${apiKey}&limit=12`
                 )
-                .then((response) => response)
                 .catch((error) => error);
-        this.setState({ data: gifs.data.data })
+        setData(gifs.data.data)
         console.log(gifs);
     }
 
-    render() {
-        const { data } = this.state;
-        return (
-            <div>
-                <input type="text" name="search" id="search" onChange={this.handleOnChange} />
-                <button className="fa fa-search" type="submit" onClick={this.getGifs}></button>
-                <GifComponent data={data} />
-            </div>
-        )
-    };
+    return (
+        <div>
+            <SearchBar query={query} handleFormChange={handleFormChange} handleFormSubmit={handleFormSubmit} />
+            {data !== undefined && (
+                <GifComponent data={data} />)}
+        </div>
+    )
 
 }
 
