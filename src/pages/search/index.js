@@ -5,7 +5,8 @@ import GifComponent from "../../components/Gif";
 
 const Search = () => {
     const [data, setData] = useState();
-    const [query, setQuery] = useState();
+    const [query, setQuery] = useState("");
+    const apiKey = process.env.REACT_APP_GIPHY_KEY; 
     
     const handleFormChange = e => {
         setQuery(e.target.value);
@@ -17,8 +18,7 @@ const Search = () => {
         getGifs();
     }
 
-    const getGifs = async () => {
-        const apiKey = process.env.REACT_APP_GIPHY_KEY; 
+    const getGifs = async () => {      
         const gifs = await
             axios
                 .get(
