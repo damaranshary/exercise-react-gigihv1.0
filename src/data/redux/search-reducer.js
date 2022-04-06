@@ -1,12 +1,12 @@
 const initialState = { value: "" };
 
-function accountReducer(state = initialState, action) {
+function searchReducer(state = initialState, action) {
   switch (action.type) {
-    case "search":
+    case "query":
       return { ...state, value: action.payload };
     default:
       return state;
   }
 }
 
-export default accountReducer;
+export default searchReducer;

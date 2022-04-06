@@ -1,6 +1,6 @@
 function search(query) {
     return {
-        type: "search",
+        type: "query",
         payload: query
     };
 }

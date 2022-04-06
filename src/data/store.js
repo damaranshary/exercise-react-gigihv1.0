@@ -1,12 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import searchDataReducer from "./redux/search-slice";
+import searchSlice from "./redux/search-slice";
 import dataSlice from "./redux/data-slice";
-// import accountReducer from "./account-reducer";
+//import searchReducer from "./redux/search-reducer";
 
 export default configureStore({
   reducer: {
-    search: searchDataReducer,
+    query: searchSlice,
     data: dataSlice
+    //query: searchReducer
   }
   // devTools: true
 });
