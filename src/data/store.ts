@@ -3,7 +3,7 @@ import searchSlice from "./redux/search-slice";
 import dataSlice from "./redux/data-slice";
 //import searchReducer from "./redux/search-reducer";
 
-export default configureStore({
+export const store = configureStore({
   reducer: {
     query: searchSlice,
     data: dataSlice
@@ -11,3 +11,6 @@ export default configureStore({
   }
   // devTools: true
 });
+
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
