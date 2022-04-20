@@ -5,7 +5,8 @@ export const dataSlice = createSlice({
     initialState: {
         value: {
             search: [],
-            trending: []
+            trending: [],
+            nothing: []
         },
     },
     reducers: {
