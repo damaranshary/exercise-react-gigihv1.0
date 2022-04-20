@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { fetchTrendingGifs } from "../../api-call/fetchTrendingGifs";
 import { useAppDispatch, useAppSelector } from "../../data/hooks";
 import { trendingData } from "../../data/redux/data-slice";
@@ -7,7 +7,7 @@ import GifComponent from "../../components/Gif";
 
 const Trending = () => {
     const apiKey = process.env.REACT_APP_GIPHY_KEY;
-    const currentData = useAppSelector((state : RootState) => state.data.value.trending);
+    const currentData = useAppSelector((state: RootState) => state.data.value.trending);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -16,8 +16,11 @@ const Trending = () => {
     }, [apiKey, dispatch]);
 
     return (
-        <div className="grid-container trending">
-            {currentData !== undefined && (<GifComponent data={currentData} />)} 
+        <div>
+            <h2>This is Trending Page!</h2>
+            <div className="grid-container trending">
+                {currentData !== undefined && (<GifComponent data={currentData} />)}
+            </div>
         </div>
     )
 }
