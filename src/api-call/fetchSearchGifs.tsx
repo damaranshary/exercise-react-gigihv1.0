@@ -7,7 +7,7 @@ export const fetchSearchGifs = async (currentQuery: string): Promise<Response> =
     const gifs = await
         axios
             .get(
-                `http://api.giphy.com/v1/gifs/search?q=${currentQuery}&api_key=${apiKey}&limit=12`
+                `https://api.giphy.com/v1/gifs/search?q=${currentQuery}&api_key=${apiKey}&limit=12`
             )
             .catch((error) => error);
     return gifs.data.data;
